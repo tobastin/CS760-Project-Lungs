@@ -47,7 +47,7 @@ def getdata_reg(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO):
 			im = cv2.imread(MASK_LIB + row[0], cv2.IMREAD_UNCHANGED).astype('float32')/255.0
 			im = cv2.resize(im, dsize=(IMG_WIDTH, IMG_HEIGHT), interpolation=cv2.INTER_NEAREST)
 			x_data.append(im)
-			y_data.append(np.float(row[1]))
+			y_data.append(np.float(row[3]))
 
 	x_data = np.array(x_data)
 	y_data = np.array(y_data)

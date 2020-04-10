@@ -115,8 +115,10 @@ def main_reg():
     #plt.plot(hist.history['val_loss'], color='r')
     #plt.show()
 
-    #print(y_hat)
-    #print(y_val)
+    print("Yhat")
+    print(y_hat)
+    print("Yval")
+    print(y_val)
 
 
 #main_seg()
