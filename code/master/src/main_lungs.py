@@ -79,7 +79,8 @@ def main_reg():
     MASK_LIB = '../input/2d_masks/'
     IMG_HEIGHT, IMG_WIDTH = 32, 32
     TEST_RATIO = 0.2
-
+    EPOCH = 100
+    p_feat_id = 3
     # get train/test data
     x_train, x_val, y_train, y_val = getdata_reg(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
 
@@ -88,17 +89,17 @@ def main_reg():
     #model.summary()
 
     # train model
-    #model.compile(optimizer=Adam(2e-4), loss='mean_squared_error')#, metrics=[dice_coef])
+    model.compile(optimizer=Adam(2e-4), loss='mean_squared_error')#, metrics=[dice_coef])
     #model.compile(optimizer=Adam(2e-4), loss='mean_absolute_percentage_error')#, metrics=[dice_coef])
-    loss = keras.losses.huber_loss(delta=1.0)
-    model.compile(optimizer=Adam(2e-4), loss=loss)#, metrics=[dice_coef])
+    #loss = keras.losses.huber_loss(delta=1.0)
+    #model.compile(optimizer=Adam(2e-4), loss=loss)#, metrics=[dice_coef])
 
     # train setup
     weight_saver = ModelCheckpoint('lung_reg.h5', save_best_only=True, save_weights_only=True)
     #annealer = LearningRateScheduler(lambda x: 1e-3 * 0.8 ** x)
 
     # train
-    hist = model.fit(x_train, y_train, batch_size=1, epochs=50, validation_data = (x_val, y_val),
+    hist = model.fit(x_train, y_train[:,p_feat_id], batch_size=1, epochs=EPOCH, validation_data = (x_val, y_val[:,p_feat_id]),
                         verbose=2, callbacks=[weight_saver])#, annealer])
 
     # model train summary
@@ -112,7 +113,7 @@ def main_reg():
 
     # test results
     y_hat = model.predict(x_val)
-    e = [abs(y_val[i]-y_hat[i])*100/y_val[i] for i in range(len(y_val))]
+    e = [abs(y_val[i,p_feat_id]-y_hat[i])*100/y_val[i,p_feat_id] for i in range(len(y_val[:,p_feat_id]))]
 
     print("\nAverage % error : ",sum(e)/len(e))
     #plt.plot(hist.history['loss'], color='b')
@@ -122,8 +123,9 @@ def main_reg():
     print("Yhat")
     print(y_hat)
     print("Yval")
-    print(y_val)
+    print(y_val[:,p_feat_id])
 
+    print("Percentage error : ",get_percent_error(y_hat,y_val[:,p_feat_id].reshape((y_val.shape[0],1))))
 
 #main_seg()
 main_reg()

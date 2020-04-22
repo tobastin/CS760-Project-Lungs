@@ -1,4 +1,4 @@
-
+import numpy as np
 
 from keras.preprocessing.image import ImageDataGenerator
 import keras.backend as K
@@ -26,3 +26,17 @@ def my_generator(x_train, y_train, batch_size):
         x_batch, _ = data_generator.next()
         y_batch, _ = mask_generator.next()
         yield x_batch, y_batch
+
+
+def get_percent_error(y_hat,y_val):
+    print(y_hat.shape)
+    print(y_val.shape)
+    n,n_f = y_val.shape
+    #perror = np.zeros((n_f,1))
+
+    
+
+    perror = np.mean(np.divide(abs(y_val-y_hat),abs(y_val)),axis=0)*100
+
+    print(perror.shape)
+    return perror

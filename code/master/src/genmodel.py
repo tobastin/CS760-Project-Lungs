@@ -38,6 +38,6 @@ def genmodel_reg(input_shape):
     l = Dense(units = 256, activation = "relu")(l)
     l = Dense(units = 128, activation = "relu")(l)
     l = Dense(units = 16, activation = "relu")(l)
-    output_layer = Dense(units = 6)(l)
+    output_layer = Dense(units = 1)(l)
 
     return Model(input_layer, output_layer)
