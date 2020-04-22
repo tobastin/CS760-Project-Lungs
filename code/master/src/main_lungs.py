@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 # %% [code]
+import keras
 from keras.models import Model
 from keras.layers import *
 from keras.optimizers import Adam
@@ -87,14 +88,17 @@ def main_reg():
     #model.summary()
 
     # train model
-    model.compile(optimizer=Adam(2e-4), loss='mean_squared_error')#, metrics=[dice_coef])
+    #model.compile(optimizer=Adam(2e-4), loss='mean_squared_error')#, metrics=[dice_coef])
+    #model.compile(optimizer=Adam(2e-4), loss='mean_absolute_percentage_error')#, metrics=[dice_coef])
+    loss = keras.losses.huber_loss(delta=1.0)
+    model.compile(optimizer=Adam(2e-4), loss=loss)#, metrics=[dice_coef])
 
     # train setup
     weight_saver = ModelCheckpoint('lung_reg.h5', save_best_only=True, save_weights_only=True)
     #annealer = LearningRateScheduler(lambda x: 1e-3 * 0.8 ** x)
 
     # train
-    hist = model.fit(x_train, y_train, batch_size=1, epochs=200, validation_data = (x_val, y_val),
+    hist = model.fit(x_train, y_train, batch_size=1, epochs=50, validation_data = (x_val, y_val),
                         verbose=2, callbacks=[weight_saver])#, annealer])
 
     # model train summary

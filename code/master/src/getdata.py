@@ -35,27 +35,33 @@ def getdata_seg(IMAGE_LIB, MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO):
     return train_test_split(x_data, y_data, test_size = TEST_RATIO)
 
 def getdata_reg(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO):
-	with open('../input/lung_stats.csv') as csvfile:
-		readCSV = csv.reader(csvfile, delimiter=',')
-		x_data = []
-		y_data = []
-		for row in readCSV:
-			# read mask image
-			if row[0] == 'img_id':
-				continue
-			#print(MASK_LIB + row[0])
-			im = cv2.imread(MASK_LIB + row[0], cv2.IMREAD_UNCHANGED).astype('float32')/255.0
-			im = cv2.resize(im, dsize=(IMG_WIDTH, IMG_HEIGHT), interpolation=cv2.INTER_NEAREST)
-			x_data.append(im)
-			y_data.append(np.float(row[3]))
+    with open('../input/lung_stats.csv') as csvfile:
+        readCSV = csv.reader(csvfile, delimiter=',')
+        x_data = []
+        y_data = []
+        for row in readCSV:
+            # read mask image
+            if row[0] == 'img_id':
+                continue
+            
+            im = cv2.imread(MASK_LIB + row[0], cv2.IMREAD_UNCHANGED).astype('float32')/255.0
 
-	x_data = np.array(x_data)
-	y_data = np.array(y_data)
-	x_data = x_data[:,:,:,np.newaxis]
-	y_data = y_data[:,np.newaxis]
-	print(x_data.shape)
-	print(y_data.shape)
+            im = cv2.resize(im, dsize=(IMG_WIDTH, IMG_HEIGHT), interpolation=cv2.INTER_NEAREST)
+            x_data.append(im)
+            
+            y = []
+            for i in range(1,7):
+                y.append(np.float(row[i]))
+            #y_data.append(np.float(row[2]))
+            y_data.append(y)
+            
+    x_data = np.array(x_data)
+    y_data = np.array(y_data)
+    x_data = x_data[:,:,:,np.newaxis]
+    #y_data = y_data[:,:,np.newaxis]
+    print(x_data.shape)
+    print(y_data.shape)
 
-	#print(y_data)
+    #print(y_data)
     #x_train, x_val, y_train, y_val = train_test_split(x_data, y_data, test_size = 0.5)
-	return train_test_split(x_data, y_data, test_size = TEST_RATIO)
+    return train_test_split(x_data, y_data, test_size = TEST_RATIO)
