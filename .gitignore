@@ -1,6 +1,7 @@
 
 *.ini
+*.pyc
 DataSet/finding-lungs-in-ct-data/3d_images.zip
-code/master/src/__pycache__/genmodel.cpython-37.pyc
-code/master/src/__pycache__/getdata.cpython-37.pyc
-code/master/src/__pycache__/utils.cpython-37.pyc
+code/master/src/__pycache__/genmodel.cpython-36.pyc
+code/master/src/__pycache__/getdata.cpython-36.pyc
+*.pyc
