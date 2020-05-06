@@ -29,6 +29,7 @@ def main_seg(segnet="unet"):
     IMG_HEIGHT, IMG_WIDTH = 32, 32
     TEST_RATIO = 0.2
 
+    print("Running Segmentation")
     #logdir = "logs/scalars/" + datetime.now().strftime("%Y%m%d-%H%M%S")
     #file_writer = tf.summary.create_file_writer(logdir + "/metrics")
     #file_writer.set_as_default()
@@ -39,6 +40,7 @@ def main_seg(segnet="unet"):
     # get train/test data
     x_train, x_val, y_train, y_val = getdata_seg(IMAGE_LIB, MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
 
+    print("Data reading completed")
     # get model
     #print(x_train.shape[1:])
     #assert(0)
@@ -68,9 +70,10 @@ def main_seg(segnet="unet"):
     hist = model.fit_generator(my_generator(x_train, y_train, 8),
                                steps_per_epoch = 200,
                                validation_data = (x_val, y_val),
-                               epochs=10, verbose=2,
+                               epochs=100, verbose=2,
                                callbacks = [weight_saver, annealer])
 
+    print("Training completed")
     #tf.summary.scalar('loss', hist.history['loss'])
     #tf.summary.scalar('accuracy', hist.history['accuracy'])
     #writer = tf.summary.FileWriter(logdir, graph=self.sess.graph)
@@ -99,37 +102,37 @@ def main_seg(segnet="unet"):
     #ax[1].imshow(y_val[0,:,:,0])
     #ax[2].imshow(y_hat[0,:,:,0])
     print(y_hat.shape)
-
+    print("Testing done")
     # TODO
     #if write_seg:
     #    for i in range(len(y_hat)):
     #        imwrite('segmented_image.png', y_hat)
 
-def main_reg():
-    MASK_LIB = '../input/2d_masks/'
+def main_classification():
+    MASK_LIB = '../input/2d_images/'
     IMG_HEIGHT, IMG_WIDTH = 32, 32
     TEST_RATIO = 0.2
-    EPOCH = 400
-    p_feat_id = 4
+    EPOCH = 100
+
     # get train/test data
-    x_train, x_val, y_train, y_val = getdata_reg(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
+    x_train, x_val, y_train, y_val = getdata_classification(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
 
     # get model
-    model = genmodel_reg_f4(x_train.shape[1:])
+    model = genmodel_classification(x_train.shape[1:])
     #model.summary()
 
     # train model
-    model.compile(optimizer=Adam(2e-4), loss='mean_squared_error')#, metrics=[dice_coef])
+    model.compile(optimizer=Adam(2e-4), loss='binary_crossentropy', metrics=['accuracy'])
     #model.compile(optimizer=Adam(2e-4), loss='mean_absolute_percentage_error')#, metrics=[dice_coef])
     #loss = keras.losses.huber_loss(delta=1.0)
     #model.compile(optimizer=Adam(2e-4), loss=loss)#, metrics=[dice_coef])
 
     # train setup
-    weight_saver = ModelCheckpoint('lung_reg.h5', save_best_only=True, save_weights_only=True)
+    weight_saver = ModelCheckpoint('covid19_classification.h5', save_best_only=True, save_weights_only=True)
     #annealer = LearningRateScheduler(lambda x: 1e-3 * 0.8 ** x)
 
     # train
-    hist = model.fit(x_train, y_train[:,p_feat_id], batch_size=1, epochs=EPOCH, validation_data = (x_val, y_val[:,p_feat_id]),
+    hist = model.fit(x_train, y_train, batch_size=1, epochs=EPOCH, validation_data = (x_val, y_val),
                         verbose=2, callbacks=[weight_saver])#, annealer])
 
     # model train summary
@@ -138,24 +141,24 @@ def main_reg():
     plt.show()
 
     # testing
-    model.load_weights('lung_reg.h5')
+    model.load_weights('covid19_classification.h5')
     #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
     # test results
-    y_hat = model.predict(x_val)
-    e = [abs(y_val[i,p_feat_id]-y_hat[i])*100/y_val[i,p_feat_id] for i in range(len(y_val[:,p_feat_id]))]
+    #y_hat = model.predict(x_val)
+    #e = [abs(y_val[i]-y_hat[i])*100/y_val[i] for i in range(len(y_val))]
 
-    print("\nAverage % error : ",sum(e)/len(e))
+    #print("\nAverage % error : ",sum(e)/len(e))
     #plt.plot(hist.history['loss'], color='b')
     #plt.plot(hist.history['val_loss'], color='r')
     #plt.show()
 
-    print("Yhat")
-    print(y_hat)
-    print("Yval")
-    print(y_val[:,p_feat_id])
+    #print("Yhat")
+    #print(y_hat)
+    #print("Yval")
+    #print(y_val[:,])
 
-    print("Percentage error : ",get_percent_error(y_hat,y_val[:,p_feat_id].reshape((y_val.shape[0],1))))
+    #print("Percentage error : ",get_percent_error(y_hat,y_val[:,p_feat_id].reshape((y_val.shape[0],1))))
 '''
 def main_reg_all():
     MASK_LIB = '../input/2d_masks/'
@@ -224,6 +227,7 @@ def main_reg_all():
 
     print("Percentage error : ",get_percent_error(y_hat,y_val))
 '''
-main_seg("unet")
+#main_seg("unetplusplus")
+main_classification()
 #main_reg()
 #main_reg_all()

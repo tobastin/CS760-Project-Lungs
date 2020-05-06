@@ -7,18 +7,18 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 def getdata_seg(IMAGE_LIB, MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO):
-    all_images = [x for x in sorted(os.listdir(IMAGE_LIB)) if x[-4:] == '.tif']
+    all_images = [x for x in sorted(os.listdir(IMAGE_LIB)) if x[-4:] == '.png']
 
     x_data = np.empty((len(all_images), IMG_HEIGHT, IMG_WIDTH), dtype='float32')
     for i, name in enumerate(all_images):
-        im = cv2.imread(IMAGE_LIB + name, cv2.IMREAD_UNCHANGED).astype("int16").astype('float32')
+        im = cv2.imread(IMAGE_LIB + name, 0).astype("int16").astype('float32')
         im = cv2.resize(im, dsize=(IMG_WIDTH, IMG_HEIGHT), interpolation=cv2.INTER_LANCZOS4)
         im = (im - np.min(im)) / (np.max(im) - np.min(im))
         x_data[i] = im
 
     y_data = np.empty((len(all_images), IMG_HEIGHT, IMG_WIDTH), dtype='float32')
     for i, name in enumerate(all_images):
-        im = cv2.imread(MASK_LIB + name, cv2.IMREAD_UNCHANGED).astype('float32')/255.
+        im = cv2.imread(MASK_LIB + name, 0).astype('float32')/255.
         im = cv2.resize(im, dsize=(IMG_WIDTH, IMG_HEIGHT), interpolation=cv2.INTER_NEAREST)
         y_data[i] = im
 
@@ -34,8 +34,8 @@ def getdata_seg(IMAGE_LIB, MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO):
     #x_train, x_val, y_train, y_val = train_test_split(x_data, y_data, test_size = 0.5)
     return train_test_split(x_data, y_data, test_size = TEST_RATIO)
 
-def getdata_reg(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO):
-    with open('../input/lung_stats.csv') as csvfile:
+def getdata_classification(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO):
+    with open('../input/classification_gt.csv') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
         x_data = []
         y_data = []
@@ -43,25 +43,26 @@ def getdata_reg(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO):
             # read mask image
             if row[0] == 'img_id':
                 continue
-            
-            im = cv2.imread(MASK_LIB + row[0], cv2.IMREAD_UNCHANGED).astype('float32')/255.0
+            #print(MASK_LIB + row[0] + ".png")
+            #im = cv2.imread(MASK_LIB + row[0] + ".png", 0).astype('float32')/255.0
+            im = cv2.imread(MASK_LIB + row[0] + ".png", 0).astype("int16").astype('float32')
+            #cv2.imshow('', im)
 
-            im = cv2.resize(im, dsize=(IMG_WIDTH, IMG_HEIGHT), interpolation=cv2.INTER_NEAREST)
+            im = cv2.resize(im, dsize=(IMG_WIDTH, IMG_HEIGHT), interpolation=cv2.INTER_CUBIC)
             x_data.append(im)
-            
+
             y = []
-            for i in range(1,7):
-                y.append(np.float(row[i]))
-            #y_data.append(np.float(row[2]))
-            y_data.append(y)
-            
+            #for i in range(1,7):
+            #    y.append(np.float(row[i]))
+            y_data.append(np.float(row[1]))
+
     x_data = np.array(x_data)
     y_data = np.array(y_data)
     x_data = x_data[:,:,:,np.newaxis]
     #y_data = y_data[:,:,np.newaxis]
     print(x_data.shape)
     print(y_data.shape)
-
+    #assert(0)
     #print(y_data)
     #x_train, x_val, y_train, y_val = train_test_split(x_data, y_data, test_size = 0.5)
     return train_test_split(x_data, y_data, test_size = TEST_RATIO)
