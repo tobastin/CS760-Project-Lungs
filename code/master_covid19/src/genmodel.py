@@ -144,7 +144,43 @@ def genmodel_seg_unetplusplus(input_shape):
 
     return Model(input_layer, output_layer)
 
+def genmodel_seg_updownnet(input_shape):
 
+    input_layer = Input(shape=input_shape)
+    l = Conv2D(filters=8, kernel_size=(3,3), activation='relu', padding='same')(input_layer)
+    l = MaxPool2D(strides=(2,2))(l)
+    l = Conv2D(filters=16, kernel_size=(3,3), activation='relu', padding='same')(l)
+    l = MaxPool2D(strides=(2,2))(l)
+    l = Conv2D(filters=32, kernel_size=(3,3), activation='relu', padding='same')(l)
+    l = MaxPool2D(strides=(2,2))(l)
+    l = Conv2D(filters=32, kernel_size=(1,1), activation='relu', padding='same')(l)
+    l = UpSampling2D(size=(2,2))(l)
+    l = Conv2D(filters=32, kernel_size=(2,2), activation='relu', padding='same')(l)
+    l = UpSampling2D(size=(2,2))(l)
+    l = Conv2D(filters=24, kernel_size=(2,2), activation='relu', padding='same')(l)
+    l = UpSampling2D(size=(2,2))(l)
+    l = Conv2D(filters=16, kernel_size=(2,2), activation='relu', padding='same')(l)
+    l = Conv2D(filters=64, kernel_size=(1,1), activation='relu')(l)
+    l = Dropout(0.5)(l)
+    output_layer = Conv2D(filters=1, kernel_size=(1,1), activation='sigmoid')(l)
+
+    return Model(input_layer, output_layer)
+
+def genmodel_seg_fconvnet(input_shape):
+
+    input_layer = Input(shape=input_shape)
+    l = Conv2D(filters=8, kernel_size=(3,3), activation='relu', padding='same')(input_layer)
+    l = Conv2D(filters=16, kernel_size=(3,3), activation='relu', padding='same')(l)
+    l = Conv2D(filters=32, kernel_size=(3,3), activation='relu', padding='same')(l)
+    l = Conv2D(filters=32, kernel_size=(1,1), activation='relu', padding='same')(l)
+    l = Conv2D(filters=32, kernel_size=(2,2), activation='relu', padding='same')(l)
+    l = Conv2D(filters=24, kernel_size=(2,2), activation='relu', padding='same')(l)
+    l = Conv2D(filters=16, kernel_size=(2,2), activation='relu', padding='same')(l)
+    l = Conv2D(filters=64, kernel_size=(1,1), activation='relu')(l)
+    l = Dropout(0.5)(l)
+    output_layer = Conv2D(filters=1, kernel_size=(1,1), activation='sigmoid')(l)
+
+    return Model(input_layer, output_layer)
 
 def genmodel_reg(input_shape):
 

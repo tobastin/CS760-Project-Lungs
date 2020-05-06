@@ -53,6 +53,12 @@ def main_seg(segnet="unet"):
     elif segnet == "unete":
         print("Using UNet-Ensemble Model")
         model = genmodel_seg_unete(x_train.shape[1:])
+    elif segnet == "updownnet":
+        print("Using Up-DownSample Model")
+        model = genmodel_seg_updownnet(x_train.shape[1:])
+    elif segnet == "fconvnet":
+        print("Using Fully Convolutional Network Model")
+        model = genmodel_seg_fconvnet(x_train.shape[1:])
     else:
         print("Using UNet Model")
         model = genmodel_seg_unet(x_train.shape[1:])
@@ -63,7 +69,7 @@ def main_seg(segnet="unet"):
     model.compile(optimizer=Adam(2e-4), loss='binary_crossentropy', metrics=[dice_coef, IoU])
 
     # train setup
-    weight_saver = ModelCheckpoint('lung_seg.h5', monitor='val_dice_coef', save_best_only=True, save_weights_only=True)
+    weight_saver = ModelCheckpoint(segnet+'.h5', monitor='val_dice_coef', save_best_only=True, save_weights_only=True)
     annealer = LearningRateScheduler(lambda x: 1e-3 * 0.8 ** x)
 
     # train
@@ -92,7 +98,7 @@ def main_seg(segnet="unet"):
     plt.show()
 
     # testing
-    model.load_weights('lung_seg.h5')
+    model.load_weights(segnet+'.h5')
     #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
     # test results

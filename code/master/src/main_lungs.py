@@ -29,6 +29,7 @@ def main_seg(segnet="unet"):
     IMG_HEIGHT, IMG_WIDTH = 32, 32
     TEST_RATIO = 0.2
 
+    print("Running Segmentation")
     #logdir = "logs/scalars/" + datetime.now().strftime("%Y%m%d-%H%M%S")
     #file_writer = tf.summary.create_file_writer(logdir + "/metrics")
     #file_writer.set_as_default()
@@ -39,6 +40,7 @@ def main_seg(segnet="unet"):
     # get train/test data
     x_train, x_val, y_train, y_val = getdata_seg(IMAGE_LIB, MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
 
+    print("Data reading completed")
     # get model
     #print(x_train.shape[1:])
     #assert(0)
@@ -51,6 +53,12 @@ def main_seg(segnet="unet"):
     elif segnet == "unete":
         print("Using UNet-Ensemble Model")
         model = genmodel_seg_unete(x_train.shape[1:])
+    elif segnet == "updownnet":
+        print("Using Up-DownSample Model")
+        model = genmodel_seg_updownnet(x_train.shape[1:])
+    elif segnet == "fconvnet":
+        print("Using Fully Convolutional Network Model")
+        model = genmodel_seg_fconvnet(x_train.shape[1:])
     else:
         print("Using UNet Model")
         model = genmodel_seg_unet(x_train.shape[1:])
@@ -61,7 +69,7 @@ def main_seg(segnet="unet"):
     model.compile(optimizer=Adam(2e-4), loss='binary_crossentropy', metrics=[dice_coef, IoU])
 
     # train setup
-    weight_saver = ModelCheckpoint('lung_seg.h5', monitor='val_dice_coef', save_best_only=True, save_weights_only=True)
+    weight_saver = ModelCheckpoint(segnet+'.h5', monitor='val_dice_coef', save_best_only=True, save_weights_only=True)
     annealer = LearningRateScheduler(lambda x: 1e-3 * 0.8 ** x)
 
     # train
@@ -70,7 +78,7 @@ def main_seg(segnet="unet"):
                                validation_data = (x_val, y_val),
                                epochs=10, verbose=2,
                                callbacks = [weight_saver, annealer])
-
+    print("Training completed")
     #tf.summary.scalar('loss', hist.history['loss'])
     #tf.summary.scalar('accuracy', hist.history['accuracy'])
     #writer = tf.summary.FileWriter(logdir, graph=self.sess.graph)
@@ -89,7 +97,7 @@ def main_seg(segnet="unet"):
     plt.show()
 
     # testing
-    model.load_weights('lung_seg.h5')
+    model.load_weights(segnet+'.h5')
     #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
     # test results
@@ -99,7 +107,7 @@ def main_seg(segnet="unet"):
     #ax[1].imshow(y_val[0,:,:,0])
     #ax[2].imshow(y_hat[0,:,:,0])
     print(y_hat.shape)
-
+    print("Testing done")
     # TODO
     #if write_seg:
     #    for i in range(len(y_hat)):
@@ -224,6 +232,6 @@ def main_reg_all():
 
     print("Percentage error : ",get_percent_error(y_hat,y_val))
 '''
-main_seg("unet")
+main_seg("fconvnet")
 #main_reg()
 #main_reg_all()
