@@ -6,6 +6,8 @@ import cv2
 import matplotlib.pyplot as plt
 #%matplotlib inline
 from sklearn.model_selection import train_test_split
+from datetime import datetime
+import tensorflow as tf
 
 # %% [code]
 import keras
@@ -27,6 +29,11 @@ def main_seg(segnet="unet"):
     IMG_HEIGHT, IMG_WIDTH = 32, 32
     TEST_RATIO = 0.2
 
+    #logdir = "logs/scalars/" + datetime.now().strftime("%Y%m%d-%H%M%S")
+    #file_writer = tf.summary.create_file_writer(logdir + "/metrics")
+    #file_writer.set_as_default()
+    #tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
     write_seg = True
 
     # get train/test data
@@ -47,11 +54,11 @@ def main_seg(segnet="unet"):
     else:
         print("Using UNet Model")
         model = genmodel_seg_unet(x_train.shape[1:])
-    
+
     #model.summary()
 
     # train model
-    model.compile(optimizer=Adam(2e-4), loss='binary_crossentropy', metrics=[dice_coef])
+    model.compile(optimizer=Adam(2e-4), loss='binary_crossentropy', metrics=[dice_coef, IoU])
 
     # train setup
     weight_saver = ModelCheckpoint('lung_seg.h5', monitor='val_dice_coef', save_best_only=True, save_weights_only=True)
@@ -64,12 +71,21 @@ def main_seg(segnet="unet"):
                                epochs=10, verbose=2,
                                callbacks = [weight_saver, annealer])
 
+    #tf.summary.scalar('loss', hist.history['loss'])
+    #tf.summary.scalar('accuracy', hist.history['accuracy'])
+    #writer = tf.summary.FileWriter(logdir, graph=self.sess.graph)
     # model train summary
     plt.plot(hist.history['loss'], color='b')
     plt.plot(hist.history['val_loss'], color='r')
+    plt.legend(['Loss', 'Validation Loss'])
     plt.show()
     plt.plot(hist.history['dice_coef'], color='b')
     plt.plot(hist.history['val_dice_coef'], color='r')
+    plt.legend(['Dice Coefficient', 'Validation Dice Coefficient'])
+    plt.show()
+    plt.plot(hist.history['IoU'], color='b')
+    plt.plot(hist.history['val_IoU'], color='r')
+    plt.legend(['IoU', 'Validation IoU'])
     plt.show()
 
     # testing
@@ -150,13 +166,13 @@ def main_reg_all():
     #p_feat_id = 3
     # get train/test data
     x_train, x_val, y_train, y_val = getdata_reg(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
-    
+
     y_hat = np.zeros(y_val.shape)
     #print(y_val.shape)
     #print(y_hat.shape)
 
     #return
-    
+
     model = []
     for p_feat_id in range(n_f):
         print("Processing model : ",p_feat_id)
@@ -188,7 +204,7 @@ def main_reg_all():
         #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
         # test results
-        
+
         #temp = model[p_feat_id].predict(x_val).reshape(y_hat.shape[0])
         #print(temp.shape)
         #print(y_hat[:,p_feat_id].shape)
@@ -208,6 +224,6 @@ def main_reg_all():
 
     print("Percentage error : ",get_percent_error(y_hat,y_val))
 '''
-main_seg("unete")
+main_seg("unet")
 #main_reg()
 #main_reg_all()
