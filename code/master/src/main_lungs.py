@@ -21,7 +21,7 @@ from genmodel import *
 from getdata import *
 from utils import *
 
-def main_seg_unet():
+def main_seg(segnet="unet"):
     IMAGE_LIB = '../input/2d_images/'
     MASK_LIB = '../input/2d_masks/'
     IMG_HEIGHT, IMG_WIDTH = 32, 32
@@ -33,7 +33,21 @@ def main_seg_unet():
     x_train, x_val, y_train, y_val = getdata_seg(IMAGE_LIB, MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
 
     # get model
-    model = genmodel_seg(x_train.shape[1:])
+    #print(x_train.shape[1:])
+    #assert(0)
+    if segnet == "unetplus":
+        print("Using UNet+ Model")
+        model = genmodel_seg_unetplus(x_train.shape[1:])
+    elif segnet == "unetplusplus":
+        print("Using UNet++ Model")
+        model = genmodel_seg_unetplusplus(x_train.shape[1:])
+    elif segnet == "unete":
+        print("Using UNet-Ensemble Model")
+        model = genmodel_seg_unete(x_train.shape[1:])
+    else:
+        print("Using UNet Model")
+        model = genmodel_seg_unet(x_train.shape[1:])
+    
     #model.summary()
 
     # train model
@@ -64,11 +78,11 @@ def main_seg_unet():
 
     # test results
     y_hat = model.predict(x_val)
-    fig, ax = plt.subplots(1,3,figsize=(12,6))
-    ax[0].imshow(x_val[0,:,:,0], cmap='gray')
-    ax[1].imshow(y_val[0,:,:,0])
-    ax[2].imshow(y_hat[0,:,:,0])
-    print(len(y_hat),len(y_hat[0]))
+    #fig, ax = plt.subplots(1,3,figsize=(12,6))
+    #ax[0].imshow(x_val[0,:,:,0], cmap='gray')
+    #ax[1].imshow(y_val[0,:,:,0])
+    #ax[2].imshow(y_hat[0,:,:,0])
+    print(y_hat.shape)
 
     # TODO
     #if write_seg:
@@ -194,6 +208,6 @@ def main_reg_all():
 
     print("Percentage error : ",get_percent_error(y_hat,y_val))
 '''
-#main_seg()
-main_reg()
+main_seg("unete")
+#main_reg()
 #main_reg_all()
