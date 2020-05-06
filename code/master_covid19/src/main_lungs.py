@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 #%matplotlib inline
 from sklearn.svm import LinearSVC
 from sklearn import svm
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix, classification_report, precision_recall_curve, roc_curve
 from sklearn.model_selection import train_test_split
 from datetime import datetime
 import tensorflow as tf
@@ -33,11 +33,6 @@ def main_seg(segnet="unet"):
     TEST_RATIO = 0.2
 
     print("Running Segmentation")
-    #logdir = "logs/scalars/" + datetime.now().strftime("%Y%m%d-%H%M%S")
-    #file_writer = tf.summary.create_file_writer(logdir + "/metrics")
-    #file_writer.set_as_default()
-    #tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
-
     write_seg = True
 
     # get train/test data
@@ -45,8 +40,6 @@ def main_seg(segnet="unet"):
 
     print("Data reading completed")
     # get model
-    #print(x_train.shape[1:])
-    #assert(0)
     if segnet == "unetplus":
         print("Using UNet+ Model")
         model = genmodel_seg_unetplus(x_train.shape[1:])
@@ -83,9 +76,7 @@ def main_seg(segnet="unet"):
                                callbacks = [weight_saver, annealer])
 
     print("Training completed")
-    #tf.summary.scalar('loss', hist.history['loss'])
-    #tf.summary.scalar('accuracy', hist.history['accuracy'])
-    #writer = tf.summary.FileWriter(logdir, graph=self.sess.graph)
+
     # model train summary
     plt.plot(hist.history['loss'], color='b')
     plt.plot(hist.history['val_loss'], color='r')
@@ -102,7 +93,6 @@ def main_seg(segnet="unet"):
 
     # testing
     model.load_weights(segnet+'.h5')
-    #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
     # test results
     y_hat = model.predict(x_val)
@@ -125,12 +115,13 @@ def main_classification():
 
     # get train/test data
     x_train, x_val, y_train, y_val = getdata_classification(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
+    print("Data reading completed")
 
     # get model
     model = genmodel_classification(x_train.shape[1:])
     #model.summary()
 
-    # train model
+    # compile model
     model.compile(optimizer=Adam(2e-4), loss='binary_crossentropy', metrics=['accuracy'])
     #model.compile(optimizer=Adam(2e-4), loss='mean_absolute_percentage_error')#, metrics=[dice_coef])
     #loss = keras.losses.huber_loss(delta=1.0)
@@ -140,43 +131,52 @@ def main_classification():
     weight_saver = ModelCheckpoint('covid19_classification.h5', save_best_only=True, save_weights_only=True)
     #annealer = LearningRateScheduler(lambda x: 1e-3 * 0.8 ** x)
 
-    # train
+    # train model
     hist = model.fit(x_train, y_train, batch_size=1, epochs=EPOCH, validation_data = (x_val, y_val),
                         verbose=2, callbacks=[weight_saver])#, annealer])
 
+    print("Training completed")
     # model train summary
-    #plt.plot(hist.history['loss'], color='b')
-    #plt.plot(hist.history['val_loss'], color='r')
-    #plt.show()
+    plt.plot(hist.history['loss'], color='b')
+    plt.plot(hist.history['val_loss'], color='r')
+    plt.xlabel('No of epochs')
+    plt.ylabel('Loss')
+    plt.legend(['Training Loss', 'Validation Loss'])
+    plt.show()
 
     # testing
     model.load_weights('covid19_classification.h5')
-    #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
     # test results
     y_hat = model.predict(x_val)
-    #print(y_hat)
     # convert probability to labels
     y_hat = [0 if val < 0.5 else 1 for val in y_hat]
-    #print(y_hat)
 
     print("Classification Report : ")
     print(classification_report(y_val, y_hat))
     print("Confusion Matrix : ")
     print(confusion_matrix(y_val, y_hat))
-    #e = [abs(y_val[i]-y_hat[i])*100/y_val[i] for i in range(len(y_val))]
+    precision, recall, _ = precision_recall_curve(y_val, y_hat)
+    print("Precision = ", precision)
+    print("Recall = ", recall)
+    # PR curve
+    plt.plot(recall, precision, marker='.', label='PR Curve')
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.legend()
+    plt.show()
+    # ROC Curve
+    false_positive_rate, true_positive_rate, _ = roc_curve(y_val, y_hat)
+    print("False Positive Rate = ", false_positive_rate)
+    print("True Positive Rate = ", true_positive_rate)
+    plt.plot(false_positive_rate, true_positive_rate, marker='*', label='ROC Curve')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.legend()
+    plt.show()
 
-    #print("\nAverage % error : ",sum(e)/len(e))
-    #plt.plot(hist.history['loss'], color='b')
-    #plt.plot(hist.history['val_loss'], color='r')
-    #plt.show()
+    print("Testing done")
 
-    #print("Yhat")
-    #print(y_hat)
-    #print("Yval")
-    #print(y_val[:,])
-
-    #print("Percentage error : ",get_percent_error(y_hat,y_val[:,p_feat_id].reshape((y_val.shape[0],1))))
 
 def main_classification_vgg16():
     MASK_LIB = '../input/2d_images/'
