@@ -1,5 +1,6 @@
 from keras.layers import *
 from keras.models import Model
+from keras.applications.vgg16 import VGG16
 
 def genmodel_seg_unet(input_shape):
 
@@ -234,6 +235,21 @@ def genmodel_classification(input_shape):
     l = Dense(units = 32, activation = "relu")(l)
     l = Dense(units = 16, activation = "relu")(l)
     l = Dense(units = 8, activation = "relu")(l)
+    output_layer = Dense(units = 1, activation = "sigmoid")(l)
+
+    return Model(input_layer, output_layer)
+
+# Use VGG16 weights
+def genmodel_classification_vgg16(input_shape):
+    input_layer = Input(shape=input_shape)
+    print(input_shape)
+    model = VGG16(include_top = False, input_shape = input_shape)
+    # mark loaded layers as not trainable
+    for layer in model.layers:
+        layer.trainable = False
+
+    l = Flatten()(model.layers[-1].output)
+    l = Dense(units = 128, activation = "relu", kernel_initializer = "he_uniform")(l)
     output_layer = Dense(units = 1, activation = "sigmoid")(l)
 
     return Model(input_layer, output_layer)

@@ -5,6 +5,9 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import cv2
 import matplotlib.pyplot as plt
 #%matplotlib inline
+from sklearn.svm import LinearSVC
+from sklearn import svm
+from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.model_selection import train_test_split
 from datetime import datetime
 import tensorflow as tf
@@ -142,16 +145,25 @@ def main_classification():
                         verbose=2, callbacks=[weight_saver])#, annealer])
 
     # model train summary
-    plt.plot(hist.history['loss'], color='b')
-    plt.plot(hist.history['val_loss'], color='r')
-    plt.show()
+    #plt.plot(hist.history['loss'], color='b')
+    #plt.plot(hist.history['val_loss'], color='r')
+    #plt.show()
 
     # testing
     model.load_weights('covid19_classification.h5')
     #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
     # test results
-    #y_hat = model.predict(x_val)
+    y_hat = model.predict(x_val)
+    #print(y_hat)
+    # convert probability to labels
+    y_hat = [0 if val < 0.5 else 1 for val in y_hat]
+    #print(y_hat)
+
+    print("Classification Report : ")
+    print(classification_report(y_val, y_hat))
+    print("Confusion Matrix : ")
+    print(confusion_matrix(y_val, y_hat))
     #e = [abs(y_val[i]-y_hat[i])*100/y_val[i] for i in range(len(y_val))]
 
     #print("\nAverage % error : ",sum(e)/len(e))
@@ -165,6 +177,77 @@ def main_classification():
     #print(y_val[:,])
 
     #print("Percentage error : ",get_percent_error(y_hat,y_val[:,p_feat_id].reshape((y_val.shape[0],1))))
+
+def main_classification_vgg16():
+    MASK_LIB = '../input/2d_images/'
+    IMG_HEIGHT, IMG_WIDTH = 32, 32
+    TEST_RATIO = 0.2
+    EPOCH = 100
+
+    # get train/test data
+    x_train, x_val, y_train, y_val = getdata_classification(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
+
+    # get model
+    model = genmodel_classification_vgg16(x_train.shape[1:])
+    opt = SGD(lr=0.001, momentum=0.9)
+    model.compile(optimizer=opt, loss='binary_crossentropy', metrics=['accuracy'])
+
+    weight_saver = ModelCheckpoint('covid19_classification_vgg16.h5', save_best_only=True, save_weights_only=True)
+
+    # train
+    hist = model.fit(x_train, y_train, batch_size=1, epochs=EPOCH, validation_data = (x_val, y_val),
+                        verbose=2, callbacks=[weight_saver])
+    y_hat = model.predict(x_val)
+    print(y_hat)
+
+
+def extract_feature_histogram(image):
+    #grayscale histogram calculation
+    hist = cv2.calcHist(image, [0], None, [256], [0, 256])
+
+    return hist.flatten()
+
+def main_classification_svm():
+    IMAGE_LIB = '../input/2d_images/'
+    IMG_HEIGHT, IMG_WIDTH = 32, 32
+    TEST_RATIO = 0.2
+
+    feature_x_train = []
+    label_y_train = []
+    feature_x_val = []
+    label_y_val = []
+    x_train, x_val, y_train, y_val = getdata_classification(IMAGE_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
+    # get training features
+    for i in range(x_train.shape[0]):
+        image = x_train[i]
+        label = y_train[i]
+
+        hist = extract_feature_histogram(image)
+        feature_x_train.append(hist)
+        label_y_train.append(label)
+    # get validation features
+    for i in range(x_val.shape[0]):
+        image = x_val[i]
+        label = y_val[i]
+
+        hist = extract_feature_histogram(image)
+        feature_x_val.append(hist)
+        label_y_val.append(label)
+
+    weight_saver = ModelCheckpoint('covid19_classification_svm.h5', save_best_only=True, save_weights_only=True)
+    svm_model = LinearSVC(penalty='l2', loss='squared_hinge')
+    svm_model.fit(feature_x_train, label_y_train)
+
+    y_prediction = svm_model.predict(feature_x_val)
+    print("Classification Report : ")
+    print(classification_report(label_y_val, y_prediction))
+    print("Confusion Matrix : ")
+    print(confusion_matrix(label_y_val, y_prediction))
+    #plt.plot(hist.history['loss'], color='b')
+    #plt.plot(hist.history['val_loss'], color='r')
+    #plt.show()
+
+
 '''
 def main_reg_all():
     MASK_LIB = '../input/2d_masks/'
@@ -235,5 +318,7 @@ def main_reg_all():
 '''
 #main_seg("unetplusplus")
 main_classification()
+#main_classification_svm()
+#main_classification_vgg16()
 #main_reg()
 #main_reg_all()
