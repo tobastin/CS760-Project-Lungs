@@ -169,12 +169,22 @@ def main_classification():
 
     print("Training completed")
     # model train summary
+    # loss plot
     plt.plot(hist.history['loss'], color='b')
     plt.plot(hist.history['val_loss'], color='r')
     plt.xlabel('No of epochs')
     plt.ylabel('Loss')
     plt.legend(['Training Loss', 'Validation Loss'])
     plt.show()
+    plt.clf()
+
+    plt.plot(hist.history['accuracy'], color='b')
+    plt.plot(hist.history['val_accuracy'], color='r')
+    plt.xlabel('No of epochs')
+    plt.ylabel('Accuracy')
+    plt.legend(['Training Accuracy', 'Validation Accuracy'])
+    plt.show()
+    plt.clf()
 
     # testing
     model.load_weights('covid19_classification.h5')
@@ -188,24 +198,24 @@ def main_classification():
     print(classification_report(y_val, y_hat))
     print("Confusion Matrix : ")
     print(confusion_matrix(y_val, y_hat))
-    precision, recall, _ = precision_recall_curve(y_val, y_hat)
-    print("Precision = ", precision)
-    print("Recall = ", recall)
+    #precision, recall, _ = precision_recall_curve(y_val, y_hat)
+    #print("Precision = ", precision)
+    #print("Recall = ", recall)
     # PR curve
-    plt.plot(recall, precision, marker='.', label='PR Curve')
-    plt.xlabel('Recall')
-    plt.ylabel('Precision')
-    plt.legend()
-    plt.show()
+    #plt.plot(recall, precision, marker='.', label='PR Curve')
+    #plt.xlabel('Recall')
+    #plt.ylabel('Precision')
+    #plt.legend()
+    #plt.show()
     # ROC Curve
-    false_positive_rate, true_positive_rate, _ = roc_curve(y_val, y_hat)
-    print("False Positive Rate = ", false_positive_rate)
-    print("True Positive Rate = ", true_positive_rate)
-    plt.plot(false_positive_rate, true_positive_rate, marker='*', label='ROC Curve')
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    plt.legend()
-    plt.show()
+    #false_positive_rate, true_positive_rate, _ = roc_curve(y_val, y_hat)
+    #print("False Positive Rate = ", false_positive_rate)
+    #print("True Positive Rate = ", true_positive_rate)
+    #plt.plot(false_positive_rate, true_positive_rate, marker='*', label='ROC Curve')
+    #plt.xlabel('False Positive Rate')
+    #plt.ylabel('True Positive Rate')
+    #plt.legend()
+    #plt.show()
 
     print("Testing done")
 
@@ -348,8 +358,8 @@ def main_reg_all():
 
     print("Percentage error : ",get_percent_error(y_hat,y_val))
 '''
-main_seg("unet")
-#main_classification()
+#main_seg("unet")
+main_classification()
 #main_classification_svm()
 #main_classification_vgg16()
 #main_reg()
