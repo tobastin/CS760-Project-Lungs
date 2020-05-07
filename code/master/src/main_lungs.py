@@ -6,6 +6,7 @@ import cv2
 import matplotlib.pyplot as plt
 #%matplotlib inline
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix, classification_report, precision_recall_curve, roc_curve
 from datetime import datetime
 import tensorflow as tf
 
@@ -22,28 +23,25 @@ from keras.callbacks import LearningRateScheduler, ModelCheckpoint
 from genmodel import *
 from getdata import *
 from utils import *
+import shutil
 
 def main_seg(segnet="unet"):
     IMAGE_LIB = '../input/2d_images/'
     MASK_LIB = '../input/2d_masks/'
-    IMG_HEIGHT, IMG_WIDTH = 32, 32
+    WRITE_DIR = './'+segnet+'_segmentation_results/'
+    PLOT_DIR = './'+segnet+'_segmentation_results/plots/'
+    IMG_HEIGHT, IMG_WIDTH = 64, 64
     TEST_RATIO = 0.2
 
     print("Running Segmentation")
-    #logdir = "logs/scalars/" + datetime.now().strftime("%Y%m%d-%H%M%S")
-    #file_writer = tf.summary.create_file_writer(logdir + "/metrics")
-    #file_writer.set_as_default()
-    #tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
 
     write_seg = True
 
     # get train/test data
-    x_train, x_val, y_train, y_val = getdata_seg(IMAGE_LIB, MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
+    x_train, x_val, y_train, y_val, visualize_x_data, visualize_y_data = getdata_seg(IMAGE_LIB, MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
 
     print("Data reading completed")
     # get model
-    #print(x_train.shape[1:])
-    #assert(0)
     if segnet == "unetplus":
         print("Using UNet+ Model")
         model = genmodel_seg_unetplus(x_train.shape[1:])
@@ -76,42 +74,64 @@ def main_seg(segnet="unet"):
     hist = model.fit_generator(my_generator(x_train, y_train, 8),
                                steps_per_epoch = 200,
                                validation_data = (x_val, y_val),
-                               epochs=10, verbose=2,
+                               epochs=100, verbose=2,
                                callbacks = [weight_saver, annealer])
     print("Training completed")
-    #tf.summary.scalar('loss', hist.history['loss'])
-    #tf.summary.scalar('accuracy', hist.history['accuracy'])
-    #writer = tf.summary.FileWriter(logdir, graph=self.sess.graph)
-    # model train summary
-    plt.plot(hist.history['loss'], color='b')
-    plt.plot(hist.history['val_loss'], color='r')
-    plt.legend(['Loss', 'Validation Loss'])
-    plt.show()
-    plt.plot(hist.history['dice_coef'], color='b')
-    plt.plot(hist.history['val_dice_coef'], color='r')
-    plt.legend(['Dice Coefficient', 'Validation Dice Coefficient'])
-    plt.show()
-    plt.plot(hist.history['IoU'], color='b')
-    plt.plot(hist.history['val_IoU'], color='r')
-    plt.legend(['IoU', 'Validation IoU'])
-    plt.show()
-
     # testing
     model.load_weights(segnet+'.h5')
-    #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
     # test results
     y_hat = model.predict(x_val)
-    #fig, ax = plt.subplots(1,3,figsize=(12,6))
-    #ax[0].imshow(x_val[0,:,:,0], cmap='gray')
-    #ax[1].imshow(y_val[0,:,:,0])
-    #ax[2].imshow(y_hat[0,:,:,0])
-    print(y_hat.shape)
+
     print("Testing done")
-    # TODO
-    #if write_seg:
-    #    for i in range(len(y_hat)):
-    #        imwrite('segmented_image.png', y_hat)
+    # Visualize data
+    visualize_y_hat = model.predict(visualize_x_data)
+
+    #threshold
+    #visualize_y_hat = [0 if val < 0.5 else 1 for val in visualize_y_hat]
+    visualize_y_hat[visualize_y_hat < 0.5] = 0
+    visualize_y_hat[visualize_y_hat >= 0.5] = 1
+    if write_seg:
+        if os.path.isdir(WRITE_DIR):
+            shutil.rmtree(WRITE_DIR)
+        os.mkdir(WRITE_DIR)
+        for i in range(len(visualize_y_hat)):
+            write_file_res = WRITE_DIR+'segmented_image_'+str(i)+'.png'
+            write_file_gt = WRITE_DIR+'gt_image_'+str(i)+'.png'
+            res_image = np.array(255*visualize_y_hat[i], dtype = 'uint8')
+            gt_image = np.array(255*visualize_y_data[i], dtype = 'uint8')
+            cv2.imwrite(write_file_res, res_image)
+            cv2.imwrite(write_file_gt, gt_image)
+
+    print("Segmentation results written")
+
+    os.mkdir(PLOT_DIR)
+    # model train summary
+    plt.plot(hist.history['loss'], color='b')
+    plt.plot(hist.history['val_loss'], color='r')
+    plt.xlabel('No of epochs')
+    plt.ylabel('Loss')
+    plt.legend(['Loss', 'Validation Loss'])
+    plt.savefig(PLOT_DIR+'loss.png')
+    plt.clf()
+    #plt.show()
+    plt.plot(hist.history['dice_coef'], color='b')
+    plt.plot(hist.history['val_dice_coef'], color='r')
+    plt.xlabel('No of epochs')
+    plt.ylabel('Dice Coefficient')
+    plt.legend(['Dice Coefficient', 'Validation Dice Coefficient'])
+    #plt.show()
+    plt.savefig(PLOT_DIR+'dice.png')
+    plt.clf()
+    plt.plot(hist.history['IoU'], color='b')
+    plt.plot(hist.history['val_IoU'], color='r')
+    plt.xlabel('No of epochs')
+    plt.ylabel('IoU')
+    plt.legend(['IoU', 'Validation IoU'])
+    plt.savefig(PLOT_DIR+'iou.png')
+    plt.clf()
+    #plt.show()
+
 
 def main_reg():
     MASK_LIB = '../input/2d_masks/'
@@ -232,6 +252,6 @@ def main_reg_all():
 
     print("Percentage error : ",get_percent_error(y_hat,y_val))
 '''
-main_seg("fconvnet")
+main_seg("updownnet")
 #main_reg()
 #main_reg_all()
