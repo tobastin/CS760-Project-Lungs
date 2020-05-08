@@ -6,9 +6,10 @@ import cv2
 import matplotlib.pyplot as plt
 #%matplotlib inline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, classification_report, precision_recall_curve, roc_curve
+from sklearn.metrics import confusion_matrix, classification_report, precision_recall_curve, roc_curve,r2_score
 from datetime import datetime
 import tensorflow as tf
+#from sklearn.metrics import r2_score
 
 # %% [code]
 import keras
@@ -137,8 +138,8 @@ def main_reg():
     MASK_LIB = '../input/2d_masks/'
     IMG_HEIGHT, IMG_WIDTH = 32, 32
     TEST_RATIO = 0.2
-    EPOCH = 400
-    p_feat_id = 4
+    EPOCH = 100
+    p_feat_id = 5
     # get train/test data
     x_train, x_val, y_train, y_val = getdata_reg(MASK_LIB, IMG_HEIGHT, IMG_WIDTH, TEST_RATIO)
 
@@ -147,7 +148,7 @@ def main_reg():
     #model.summary()
 
     # train model
-    model.compile(optimizer=Adam(2e-4), loss='mean_squared_error')#, metrics=[dice_coef])
+    model.compile(optimizer=Adam(2e-4), loss='mean_squared_error')#, metrics=[r2_keras])
     #model.compile(optimizer=Adam(2e-4), loss='mean_absolute_percentage_error')#, metrics=[dice_coef])
     #loss = keras.losses.huber_loss(delta=1.0)
     #model.compile(optimizer=Adam(2e-4), loss=loss)#, metrics=[dice_coef])
@@ -163,27 +164,34 @@ def main_reg():
     # model train summary
     plt.plot(hist.history['loss'], color='b')
     plt.plot(hist.history['val_loss'], color='r')
+    plt.xlabel('No of epochs')
+    plt.ylabel('Loss')
+    plt.legend(['Loss', 'Validation Loss'])
+    plt.title("Regression Learning Curve ")
+    #plt.savefig(PLOT_DIR+'loss.png')
     plt.show()
-
+    plt.clf()
+    
     # testing
     model.load_weights('lung_reg.h5')
     #plt.imshow(model.predict(x_train[10].reshape(1,IMG_HEIGHT, IMG_WIDTH, 1))[0,:,:,0], cmap='gray')
 
     # test results
     y_hat = model.predict(x_val)
-    e = [abs(y_val[i,p_feat_id]-y_hat[i])*100/y_val[i,p_feat_id] for i in range(len(y_val[:,p_feat_id]))]
+    #e = [abs(y_val[i,p_feat_id]-y_hat[i])*100/y_val[i,p_feat_id] for i in range(len(y_val[:,p_feat_id]))]
+    print("R2 score  :",r2_score(y_val[:,p_feat_id], y_hat))
 
-    print("\nAverage % error : ",sum(e)/len(e))
+    #print("\nAverage % error : ",sum(e)/len(e))
     #plt.plot(hist.history['loss'], color='b')
     #plt.plot(hist.history['val_loss'], color='r')
     #plt.show()
 
-    print("Yhat")
-    print(y_hat)
-    print("Yval")
-    print(y_val[:,p_feat_id])
+    #print("Yhat")
+    #print(y_hat)
+    #print("Yval")
+    #print(y_val[:,p_feat_id])
 
-    print("Percentage error : ",get_percent_error(y_hat,y_val[:,p_feat_id].reshape((y_val.shape[0],1))))
+    #print("Percentage error : ",get_percent_error(y_hat,y_val[:,p_feat_id].reshape((y_val.shape[0],1))))
 '''
 def main_reg_all():
     MASK_LIB = '../input/2d_masks/'
@@ -252,6 +260,6 @@ def main_reg_all():
 
     print("Percentage error : ",get_percent_error(y_hat,y_val))
 '''
-main_seg("updownnet")
-#main_reg()
+#main_seg("updownnet")
+main_reg()
 #main_reg_all()

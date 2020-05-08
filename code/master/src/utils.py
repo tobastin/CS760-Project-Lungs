@@ -17,6 +17,11 @@ def IoU(y_true, y_pred):
     intersection = K.sum(y_true_f * y_pred_f)
     return (intersection + K.epsilon()) / (K.sum(y_true_f) + K.sum(y_pred_f) - intersection + K.epsilon())
 
+def r2_keras(y_true, y_pred):
+    SS_res =  K.sum(K.square(y_true - y_pred)) 
+    SS_tot = K.sum(K.square(y_true - K.mean(y_true))) 
+    return ( 1 - SS_res/(SS_tot + K.epsilon()) )
+    
 def my_generator(x_train, y_train, batch_size):
     data_generator = ImageDataGenerator(
             width_shift_range=0.1,
