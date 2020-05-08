@@ -1,0 +1,202 @@
+Train on 213 samples, validate on 54 samples
+Epoch 1/100
+ - 2s - loss: 0.0039 - val_loss: 5.7717e-04
+Epoch 2/100
+ - 1s - loss: 6.5228e-04 - val_loss: 2.8100e-04
+Epoch 3/100
+ - 1s - loss: 3.6032e-04 - val_loss: 1.6789e-04
+Epoch 4/100
+ - 1s - loss: 1.9465e-04 - val_loss: 2.0378e-04
+Epoch 5/100
+ - 1s - loss: 2.1996e-04 - val_loss: 1.9370e-04
+Epoch 6/100
+ - 1s - loss: 1.5242e-04 - val_loss: 1.3206e-04
+Epoch 7/100
+ - 1s - loss: 1.6418e-04 - val_loss: 5.2410e-04
+Epoch 8/100
+ - 1s - loss: 1.7157e-04 - val_loss: 9.2270e-05
+Epoch 9/100
+ - 1s - loss: 9.1738e-05 - val_loss: 2.2297e-04
+Epoch 10/100
+ - 1s - loss: 1.2528e-04 - val_loss: 1.1263e-04
+Epoch 11/100
+ - 1s - loss: 6.4880e-05 - val_loss: 1.2847e-04
+Epoch 12/100
+ - 1s - loss: 7.3078e-05 - val_loss: 1.2180e-04
+Epoch 13/100
+ - 1s - loss: 1.4492e-04 - val_loss: 1.4680e-04
+Epoch 14/100
+ - 1s - loss: 7.5192e-05 - val_loss: 9.1749e-05
+Epoch 15/100
+ - 1s - loss: 1.1224e-04 - val_loss: 8.8930e-05
+Epoch 16/100
+ - 1s - loss: 6.1387e-05 - val_loss: 7.2113e-05
+Epoch 17/100
+ - 1s - loss: 4.6856e-05 - val_loss: 7.1531e-05
+Epoch 18/100
+ - 1s - loss: 6.9732e-05 - val_loss: 2.0466e-04
+Epoch 19/100
+ - 1s - loss: 6.7387e-05 - val_loss: 1.2534e-04
+Epoch 20/100
+ - 1s - loss: 5.8113e-05 - val_loss: 1.7605e-04
+Epoch 21/100
+ - 1s - loss: 5.3596e-05 - val_loss: 8.4243e-05
+Epoch 22/100
+ - 1s - loss: 8.8491e-05 - val_loss: 9.4230e-05
+Epoch 23/100
+ - 1s - loss: 1.0520e-04 - val_loss: 8.7894e-04
+Epoch 24/100
+ - 1s - loss: 1.2580e-04 - val_loss: 8.0121e-05
+Epoch 25/100
+ - 1s - loss: 7.8899e-05 - val_loss: 1.3867e-04
+Epoch 26/100
+ - 1s - loss: 7.8445e-05 - val_loss: 1.2127e-04
+Epoch 27/100
+ - 1s - loss: 7.0310e-05 - val_loss: 8.8489e-05
+Epoch 28/100
+ - 1s - loss: 1.4456e-04 - val_loss: 7.4928e-05
+Epoch 29/100
+ - 1s - loss: 3.8778e-05 - val_loss: 7.5670e-05
+Epoch 30/100
+ - 1s - loss: 2.0674e-05 - val_loss: 1.2964e-04
+Epoch 31/100
+ - 1s - loss: 2.6477e-05 - val_loss: 8.6040e-05
+Epoch 32/100
+ - 1s - loss: 2.7258e-05 - val_loss: 7.3916e-05
+Epoch 33/100
+ - 1s - loss: 2.1358e-05 - val_loss: 8.1173e-05
+Epoch 34/100
+ - 1s - loss: 2.8178e-05 - val_loss: 7.5122e-05
+Epoch 35/100
+ - 1s - loss: 1.5545e-04 - val_loss: 1.0137e-04
+Epoch 36/100
+ - 1s - loss: 7.2295e-05 - val_loss: 1.1215e-04
+Epoch 37/100
+ - 1s - loss: 1.4012e-04 - val_loss: 8.5900e-05
+Epoch 38/100
+ - 1s - loss: 6.7154e-05 - val_loss: 6.0864e-05
+Epoch 39/100
+ - 1s - loss: 5.3688e-05 - val_loss: 1.3104e-04
+Epoch 40/100
+ - 1s - loss: 2.5323e-05 - val_loss: 7.2852e-05
+Epoch 41/100
+ - 1s - loss: 1.5339e-05 - val_loss: 8.0974e-05
+Epoch 42/100
+ - 1s - loss: 1.3352e-05 - val_loss: 7.2946e-05
+Epoch 43/100
+ - 1s - loss: 1.9605e-05 - val_loss: 1.1011e-04
+Epoch 44/100
+ - 1s - loss: 2.8882e-05 - val_loss: 1.1490e-04
+Epoch 45/100
+ - 1s - loss: 3.4555e-05 - val_loss: 7.6689e-05
+Epoch 46/100
+ - 1s - loss: 2.8911e-05 - val_loss: 6.1302e-05
+Epoch 47/100
+ - 1s - loss: 3.9652e-05 - val_loss: 1.3826e-04
+Epoch 48/100
+ - 1s - loss: 1.0625e-04 - val_loss: 7.1138e-05
+Epoch 49/100
+ - 1s - loss: 1.6176e-04 - val_loss: 9.5351e-05
+Epoch 50/100
+ - 1s - loss: 7.7356e-05 - val_loss: 8.5320e-05
+Epoch 51/100
+ - 1s - loss: 4.6735e-05 - val_loss: 7.7059e-05
+Epoch 52/100
+ - 1s - loss: 2.2256e-05 - val_loss: 6.5512e-05
+Epoch 53/100
+ - 1s - loss: 3.5922e-05 - val_loss: 1.0118e-04
+Epoch 54/100
+ - 1s - loss: 1.2618e-05 - val_loss: 6.0869e-05
+Epoch 55/100
+ - 1s - loss: 7.6151e-06 - val_loss: 7.6674e-05
+Epoch 56/100
+ - 1s - loss: 1.0576e-05 - val_loss: 6.9060e-05
+Epoch 57/100
+ - 1s - loss: 6.6756e-06 - val_loss: 5.6614e-05
+Epoch 58/100
+ - 1s - loss: 5.6295e-06 - val_loss: 5.6429e-05
+Epoch 59/100
+ - 1s - loss: 8.9936e-06 - val_loss: 8.2933e-05
+Epoch 60/100
+ - 1s - loss: 2.7966e-05 - val_loss: 8.1949e-05
+Epoch 61/100
+ - 1s - loss: 2.3182e-05 - val_loss: 6.9686e-05
+Epoch 62/100
+ - 1s - loss: 2.3698e-05 - val_loss: 7.0731e-05
+Epoch 63/100
+ - 1s - loss: 3.6595e-05 - val_loss: 1.8896e-04
+Epoch 64/100
+ - 1s - loss: 1.8788e-04 - val_loss: 1.1560e-04
+Epoch 65/100
+ - 1s - loss: 6.3663e-05 - val_loss: 1.0686e-04
+Epoch 66/100
+ - 1s - loss: 4.1800e-05 - val_loss: 7.7895e-05
+Epoch 67/100
+ - 1s - loss: 2.5973e-05 - val_loss: 1.0284e-04
+Epoch 68/100
+ - 1s - loss: 2.4184e-05 - val_loss: 6.0176e-05
+Epoch 69/100
+ - 1s - loss: 2.2606e-05 - val_loss: 6.5567e-05
+Epoch 70/100
+ - 1s - loss: 3.7512e-05 - val_loss: 6.8820e-05
+Epoch 71/100
+ - 1s - loss: 2.4417e-05 - val_loss: 7.2422e-05
+Epoch 72/100
+ - 1s - loss: 1.3802e-05 - val_loss: 6.3690e-05
+Epoch 73/100
+ - 1s - loss: 1.6624e-05 - val_loss: 2.5570e-04
+Epoch 74/100
+ - 1s - loss: 2.9700e-05 - val_loss: 1.4096e-04
+Epoch 75/100
+ - 1s - loss: 5.8205e-05 - val_loss: 8.0215e-05
+Epoch 76/100
+ - 1s - loss: 2.9322e-05 - val_loss: 7.7668e-05
+Epoch 77/100
+ - 1s - loss: 2.1747e-05 - val_loss: 6.4351e-05
+Epoch 78/100
+ - 1s - loss: 1.3474e-05 - val_loss: 6.5480e-05
+Epoch 79/100
+ - 1s - loss: 1.7472e-05 - val_loss: 5.9932e-05
+Epoch 80/100
+ - 1s - loss: 2.7820e-05 - val_loss: 6.6926e-05
+Epoch 81/100
+ - 1s - loss: 3.2867e-05 - val_loss: 5.0252e-05
+Epoch 82/100
+ - 1s - loss: 2.0416e-05 - val_loss: 6.0384e-05
+Epoch 83/100
+ - 1s - loss: 4.7635e-05 - val_loss: 8.1492e-05
+Epoch 84/100
+ - 1s - loss: 3.8415e-05 - val_loss: 1.1079e-04
+Epoch 85/100
+ - 1s - loss: 5.1389e-05 - val_loss: 6.3308e-05
+Epoch 86/100
+ - 1s - loss: 2.1316e-05 - val_loss: 5.8739e-05
+Epoch 87/100
+ - 1s - loss: 1.4019e-05 - val_loss: 7.9101e-05
+Epoch 88/100
+ - 1s - loss: 1.7786e-05 - val_loss: 6.7365e-05
+Epoch 89/100
+ - 1s - loss: 3.2940e-05 - val_loss: 5.0781e-05
+Epoch 90/100
+ - 1s - loss: 3.4514e-05 - val_loss: 8.1341e-05
+Epoch 91/100
+ - 1s - loss: 2.3429e-05 - val_loss: 6.6349e-05
+Epoch 92/100
+ - 1s - loss: 1.1015e-05 - val_loss: 6.1550e-05
+Epoch 93/100
+ - 1s - loss: 1.0894e-05 - val_loss: 8.2507e-05
+Epoch 94/100
+ - 1s - loss: 3.0088e-05 - val_loss: 6.1034e-05
+Epoch 95/100
+ - 1s - loss: 1.9521e-05 - val_loss: 5.9949e-05
+Epoch 96/100
+ - 1s - loss: 2.8306e-05 - val_loss: 1.4773e-04
+Epoch 97/100
+ - 1s - loss: 8.3976e-05 - val_loss: 1.9788e-04
+Epoch 98/100
+ - 1s - loss: 9.8847e-05 - val_loss: 9.8370e-05
+Epoch 99/100
+ - 1s - loss: 1.8524e-05 - val_loss: 7.5765e-05
+Epoch 100/100
+ - 1s - loss: 2.8366e-05 - val_loss: 8.1829e-05
+R2 score  : 0.9851109610384324

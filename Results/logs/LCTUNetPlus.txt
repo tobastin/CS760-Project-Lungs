@@ -1,0 +1,200 @@
+Epoch 1/100
+ - 31s - loss: 0.2927 - dice_coef: 0.5943 - IoU: 0.4527 - val_loss: 0.0823 - val_dice_coef: 0.8943 - val_IoU: 0.8092
+Epoch 2/100
+ - 31s - loss: 0.1068 - dice_coef: 0.8747 - IoU: 0.7783 - val_loss: 0.1047 - val_dice_coef: 0.8647 - val_IoU: 0.7621
+Epoch 3/100
+ - 31s - loss: 0.0967 - dice_coef: 0.8879 - IoU: 0.7996 - val_loss: 0.0908 - val_dice_coef: 0.8669 - val_IoU: 0.7654
+Epoch 4/100
+ - 31s - loss: 0.0842 - dice_coef: 0.9002 - IoU: 0.8194 - val_loss: 0.0564 - val_dice_coef: 0.9349 - val_IoU: 0.8782
+Epoch 5/100
+ - 31s - loss: 0.0776 - dice_coef: 0.9089 - IoU: 0.8338 - val_loss: 0.0563 - val_dice_coef: 0.9316 - val_IoU: 0.8723
+Epoch 6/100
+ - 32s - loss: 0.0765 - dice_coef: 0.9093 - IoU: 0.8346 - val_loss: 0.0634 - val_dice_coef: 0.9263 - val_IoU: 0.8632
+Epoch 7/100
+ - 32s - loss: 0.0728 - dice_coef: 0.9139 - IoU: 0.8421 - val_loss: 0.0563 - val_dice_coef: 0.9317 - val_IoU: 0.8726
+Epoch 8/100
+ - 31s - loss: 0.0700 - dice_coef: 0.9165 - IoU: 0.8464 - val_loss: 0.0564 - val_dice_coef: 0.9295 - val_IoU: 0.8687
+Epoch 9/100
+ - 31s - loss: 0.0701 - dice_coef: 0.9164 - IoU: 0.8462 - val_loss: 0.0569 - val_dice_coef: 0.9309 - val_IoU: 0.8712
+Epoch 10/100
+ - 34s - loss: 0.0687 - dice_coef: 0.9167 - IoU: 0.8469 - val_loss: 0.0557 - val_dice_coef: 0.9351 - val_IoU: 0.8784
+Epoch 11/100
+ - 34s - loss: 0.0692 - dice_coef: 0.9180 - IoU: 0.8490 - val_loss: 0.0566 - val_dice_coef: 0.9275 - val_IoU: 0.8652
+Epoch 12/100
+ - 33s - loss: 0.0717 - dice_coef: 0.9149 - IoU: 0.8442 - val_loss: 0.0549 - val_dice_coef: 0.9339 - val_IoU: 0.8763
+Epoch 13/100
+ - 31s - loss: 0.0668 - dice_coef: 0.9195 - IoU: 0.8516 - val_loss: 0.0553 - val_dice_coef: 0.9347 - val_IoU: 0.8777
+Epoch 14/100
+ - 31s - loss: 0.0726 - dice_coef: 0.9151 - IoU: 0.8450 - val_loss: 0.0565 - val_dice_coef: 0.9332 - val_IoU: 0.8751
+Epoch 15/100
+ - 31s - loss: 0.0665 - dice_coef: 0.9189 - IoU: 0.8506 - val_loss: 0.0549 - val_dice_coef: 0.9345 - val_IoU: 0.8774
+Epoch 16/100
+ - 31s - loss: 0.0671 - dice_coef: 0.9196 - IoU: 0.8518 - val_loss: 0.0562 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 17/100
+ - 31s - loss: 0.0665 - dice_coef: 0.9196 - IoU: 0.8517 - val_loss: 0.0560 - val_dice_coef: 0.9334 - val_IoU: 0.8755
+Epoch 18/100
+ - 31s - loss: 0.0666 - dice_coef: 0.9194 - IoU: 0.8515 - val_loss: 0.0557 - val_dice_coef: 0.9337 - val_IoU: 0.8761
+Epoch 19/100
+ - 31s - loss: 0.0664 - dice_coef: 0.9198 - IoU: 0.8520 - val_loss: 0.0555 - val_dice_coef: 0.9345 - val_IoU: 0.8775
+Epoch 20/100
+ - 31s - loss: 0.0655 - dice_coef: 0.9206 - IoU: 0.8535 - val_loss: 0.0558 - val_dice_coef: 0.9343 - val_IoU: 0.8770
+Epoch 21/100
+ - 31s - loss: 0.0662 - dice_coef: 0.9201 - IoU: 0.8528 - val_loss: 0.0560 - val_dice_coef: 0.9343 - val_IoU: 0.8770
+Epoch 22/100
+ - 31s - loss: 0.0659 - dice_coef: 0.9205 - IoU: 0.8532 - val_loss: 0.0557 - val_dice_coef: 0.9341 - val_IoU: 0.8768
+Epoch 23/100
+ - 31s - loss: 0.0656 - dice_coef: 0.9206 - IoU: 0.8535 - val_loss: 0.0559 - val_dice_coef: 0.9338 - val_IoU: 0.8763
+Epoch 24/100
+ - 31s - loss: 0.0656 - dice_coef: 0.9203 - IoU: 0.8530 - val_loss: 0.0562 - val_dice_coef: 0.9338 - val_IoU: 0.8762
+Epoch 25/100
+ - 32s - loss: 0.0664 - dice_coef: 0.9206 - IoU: 0.8534 - val_loss: 0.0560 - val_dice_coef: 0.9338 - val_IoU: 0.8763
+Epoch 26/100
+ - 33s - loss: 0.0656 - dice_coef: 0.9209 - IoU: 0.8539 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 27/100
+ - 32s - loss: 0.0656 - dice_coef: 0.9204 - IoU: 0.8531 - val_loss: 0.0561 - val_dice_coef: 0.9275 - val_IoU: 0.8701
+Epoch 28/100
+ - 32s - loss: 0.0663 - dice_coef: 0.9203 - IoU: 0.8528 - val_loss: 0.0559 - val_dice_coef: 0.9342 - val_IoU: 0.8768
+Epoch 29/100
+ - 34s - loss: 0.0649 - dice_coef: 0.9206 - IoU: 0.8536 - val_loss: 0.0560 - val_dice_coef: 0.9341 - val_IoU: 0.8767
+Epoch 30/100
+ - 33s - loss: 0.0650 - dice_coef: 0.9211 - IoU: 0.8542 - val_loss: 0.0560 - val_dice_coef: 0.9341 - val_IoU: 0.8767
+Epoch 31/100
+ - 32s - loss: 0.0656 - dice_coef: 0.9205 - IoU: 0.8533 - val_loss: 0.0559 - val_dice_coef: 0.9342 - val_IoU: 0.8769
+Epoch 32/100
+ - 32s - loss: 0.0652 - dice_coef: 0.9206 - IoU: 0.8535 - val_loss: 0.0559 - val_dice_coef: 0.9342 - val_IoU: 0.8769
+Epoch 33/100
+ - 32s - loss: 0.0659 - dice_coef: 0.9210 - IoU: 0.8541 - val_loss: 0.0559 - val_dice_coef: 0.9341 - val_IoU: 0.8767
+Epoch 34/100
+ - 32s - loss: 0.0659 - dice_coef: 0.9208 - IoU: 0.8538 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 35/100
+ - 32s - loss: 0.0682 - dice_coef: 0.9195 - IoU: 0.8520 - val_loss: 0.0560 - val_dice_coef: 0.9339 - val_IoU: 0.8763
+Epoch 36/100
+ - 32s - loss: 0.0656 - dice_coef: 0.9206 - IoU: 0.8533 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8765
+Epoch 37/100
+ - 32s - loss: 0.0658 - dice_coef: 0.9210 - IoU: 0.8542 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8765
+Epoch 38/100
+ - 34s - loss: 0.0660 - dice_coef: 0.9202 - IoU: 0.8527 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 39/100
+ - 33s - loss: 0.0658 - dice_coef: 0.9201 - IoU: 0.8526 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 40/100
+ - 32s - loss: 0.0653 - dice_coef: 0.9201 - IoU: 0.8526 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 41/100
+ - 32s - loss: 0.0648 - dice_coef: 0.9209 - IoU: 0.8540 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 42/100
+ - 32s - loss: 0.0662 - dice_coef: 0.9202 - IoU: 0.8528 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 43/100
+ - 32s - loss: 0.0662 - dice_coef: 0.9205 - IoU: 0.8532 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 44/100
+ - 33s - loss: 0.0651 - dice_coef: 0.9204 - IoU: 0.8533 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 45/100
+ - 32s - loss: 0.0646 - dice_coef: 0.9210 - IoU: 0.8541 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 46/100
+ - 32s - loss: 0.0660 - dice_coef: 0.9197 - IoU: 0.8520 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 47/100
+ - 32s - loss: 0.0654 - dice_coef: 0.9206 - IoU: 0.8535 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 48/100
+ - 33s - loss: 0.0657 - dice_coef: 0.9197 - IoU: 0.8520 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 49/100
+ - 32s - loss: 0.0656 - dice_coef: 0.9207 - IoU: 0.8535 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 50/100
+ - 32s - loss: 0.0650 - dice_coef: 0.9212 - IoU: 0.8544 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 51/100
+ - 33s - loss: 0.0655 - dice_coef: 0.9203 - IoU: 0.8530 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 52/100
+ - 32s - loss: 0.0663 - dice_coef: 0.9202 - IoU: 0.8529 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 53/100
+ - 32s - loss: 0.0662 - dice_coef: 0.9204 - IoU: 0.8532 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 54/100
+ - 32s - loss: 0.0659 - dice_coef: 0.9209 - IoU: 0.8540 - val_loss: 0.0560 - val_dice_coef: 0.9276 - val_IoU: 0.8701
+Epoch 55/100
+ - 32s - loss: 0.0657 - dice_coef: 0.9205 - IoU: 0.8533 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 56/100
+ - 33s - loss: 0.0650 - dice_coef: 0.9210 - IoU: 0.8540 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 57/100
+ - 33s - loss: 0.0672 - dice_coef: 0.9191 - IoU: 0.8511 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 58/100
+ - 32s - loss: 0.0656 - dice_coef: 0.9199 - IoU: 0.8523 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 59/100
+ - 32s - loss: 0.0649 - dice_coef: 0.9208 - IoU: 0.8538 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 60/100
+ - 32s - loss: 0.0657 - dice_coef: 0.9207 - IoU: 0.8535 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 61/100
+ - 32s - loss: 0.0646 - dice_coef: 0.9212 - IoU: 0.8544 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 62/100
+ - 32s - loss: 0.0664 - dice_coef: 0.9202 - IoU: 0.8528 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 63/100
+ - 33s - loss: 0.0658 - dice_coef: 0.9210 - IoU: 0.8540 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 64/100
+ - 33s - loss: 0.0659 - dice_coef: 0.9208 - IoU: 0.8537 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 65/100
+ - 32s - loss: 0.0658 - dice_coef: 0.9204 - IoU: 0.8532 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 66/100
+ - 33s - loss: 0.0654 - dice_coef: 0.9207 - IoU: 0.8535 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 67/100
+ - 31s - loss: 0.0659 - dice_coef: 0.9208 - IoU: 0.8537 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 68/100
+ - 31s - loss: 0.0656 - dice_coef: 0.9205 - IoU: 0.8533 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 69/100
+ - 31s - loss: 0.0661 - dice_coef: 0.9196 - IoU: 0.8519 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 70/100
+ - 31s - loss: 0.0639 - dice_coef: 0.9216 - IoU: 0.8550 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 71/100
+ - 32s - loss: 0.0667 - dice_coef: 0.9202 - IoU: 0.8530 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 72/100
+ - 32s - loss: 0.0645 - dice_coef: 0.9214 - IoU: 0.8548 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 73/100
+ - 32s - loss: 0.0657 - dice_coef: 0.9204 - IoU: 0.8532 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 74/100
+ - 32s - loss: 0.0656 - dice_coef: 0.9206 - IoU: 0.8536 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 75/100
+ - 32s - loss: 0.0666 - dice_coef: 0.9203 - IoU: 0.8530 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 76/100
+ - 31s - loss: 0.0655 - dice_coef: 0.9206 - IoU: 0.8535 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 77/100
+ - 31s - loss: 0.0661 - dice_coef: 0.9201 - IoU: 0.8526 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 78/100
+ - 31s - loss: 0.0653 - dice_coef: 0.9208 - IoU: 0.8538 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 79/100
+ - 31s - loss: 0.0668 - dice_coef: 0.9201 - IoU: 0.8527 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 80/100
+ - 34s - loss: 0.0644 - dice_coef: 0.9207 - IoU: 0.8536 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 81/100
+ - 32s - loss: 0.0652 - dice_coef: 0.9208 - IoU: 0.8538 - val_loss: 0.0560 - val_dice_coef: 0.9276 - val_IoU: 0.8701
+Epoch 82/100
+ - 32s - loss: 0.0661 - dice_coef: 0.9207 - IoU: 0.8535 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 83/100
+ - 32s - loss: 0.0653 - dice_coef: 0.9204 - IoU: 0.8531 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 84/100
+ - 32s - loss: 0.0656 - dice_coef: 0.9201 - IoU: 0.8527 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 85/100
+ - 32s - loss: 0.0651 - dice_coef: 0.9200 - IoU: 0.8526 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 86/100
+ - 32s - loss: 0.0654 - dice_coef: 0.9213 - IoU: 0.8546 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 87/100
+ - 32s - loss: 0.0657 - dice_coef: 0.9194 - IoU: 0.8516 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 88/100
+ - 33s - loss: 0.0660 - dice_coef: 0.9206 - IoU: 0.8536 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 89/100
+ - 32s - loss: 0.0657 - dice_coef: 0.9197 - IoU: 0.8520 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 90/100
+ - 32s - loss: 0.0665 - dice_coef: 0.9202 - IoU: 0.8527 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 91/100
+ - 32s - loss: 0.0649 - dice_coef: 0.9208 - IoU: 0.8537 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 92/100
+ - 32s - loss: 0.0656 - dice_coef: 0.9195 - IoU: 0.8518 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 93/100
+ - 32s - loss: 0.0655 - dice_coef: 0.9209 - IoU: 0.8540 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 94/100
+ - 33s - loss: 0.0663 - dice_coef: 0.9207 - IoU: 0.8536 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 95/100
+ - 33s - loss: 0.0670 - dice_coef: 0.9201 - IoU: 0.8530 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 96/100
+ - 32s - loss: 0.0677 - dice_coef: 0.9196 - IoU: 0.8520 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 97/100
+ - 32s - loss: 0.0655 - dice_coef: 0.9203 - IoU: 0.8532 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 98/100
+ - 32s - loss: 0.0653 - dice_coef: 0.9208 - IoU: 0.8538 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 99/100
+ - 32s - loss: 0.0657 - dice_coef: 0.9211 - IoU: 0.8544 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766
+Epoch 100/100
+ - 32s - loss: 0.0660 - dice_coef: 0.9200 - IoU: 0.8525 - val_loss: 0.0560 - val_dice_coef: 0.9340 - val_IoU: 0.8766

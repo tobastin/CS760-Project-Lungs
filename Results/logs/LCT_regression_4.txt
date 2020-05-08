@@ -1,0 +1,202 @@
+Train on 213 samples, validate on 54 samples
+Epoch 1/100
+ - 1s - loss: 40302.1345 - val_loss: 7867.5612
+Epoch 2/100
+ - 1s - loss: 9016.1978 - val_loss: 7906.0805
+Epoch 3/100
+ - 1s - loss: 8877.9733 - val_loss: 7924.5677
+Epoch 4/100
+ - 1s - loss: 8726.4675 - val_loss: 7624.1271
+Epoch 5/100
+ - 1s - loss: 8851.9050 - val_loss: 7597.4663
+Epoch 6/100
+ - 1s - loss: 8819.4927 - val_loss: 9118.5512
+Epoch 7/100
+ - 1s - loss: 8975.2341 - val_loss: 8026.7034
+Epoch 8/100
+ - 1s - loss: 8315.9852 - val_loss: 10310.0520
+Epoch 9/100
+ - 1s - loss: 8610.4773 - val_loss: 8200.7874
+Epoch 10/100
+ - 1s - loss: 8268.8241 - val_loss: 8101.8606
+Epoch 11/100
+ - 1s - loss: 8295.6536 - val_loss: 7479.9508
+Epoch 12/100
+ - 1s - loss: 8106.0180 - val_loss: 7356.7659
+Epoch 13/100
+ - 1s - loss: 8106.3327 - val_loss: 8277.8778
+Epoch 14/100
+ - 1s - loss: 7998.5734 - val_loss: 7435.2385
+Epoch 15/100
+ - 1s - loss: 8319.1920 - val_loss: 7283.6959
+Epoch 16/100
+ - 1s - loss: 8004.8677 - val_loss: 7308.2910
+Epoch 17/100
+ - 1s - loss: 7585.3114 - val_loss: 9918.5631
+Epoch 18/100
+ - 1s - loss: 7815.5561 - val_loss: 8088.5735
+Epoch 19/100
+ - 1s - loss: 7708.1612 - val_loss: 8862.5774
+Epoch 20/100
+ - 1s - loss: 7898.3981 - val_loss: 7387.8319
+Epoch 21/100
+ - 1s - loss: 7342.7080 - val_loss: 7530.2286
+Epoch 22/100
+ - 1s - loss: 7878.2490 - val_loss: 12703.5719
+Epoch 23/100
+ - 1s - loss: 7512.6429 - val_loss: 7302.6372
+Epoch 24/100
+ - 1s - loss: 7643.6947 - val_loss: 7081.9677
+Epoch 25/100
+ - 1s - loss: 7325.6787 - val_loss: 7153.3986
+Epoch 26/100
+ - 1s - loss: 7067.2299 - val_loss: 7069.8961
+Epoch 27/100
+ - 1s - loss: 7005.5096 - val_loss: 11689.6647
+Epoch 28/100
+ - 1s - loss: 7970.6048 - val_loss: 7821.5024
+Epoch 29/100
+ - 1s - loss: 7104.2445 - val_loss: 7117.7931
+Epoch 30/100
+ - 1s - loss: 6684.4768 - val_loss: 11031.1922
+Epoch 31/100
+ - 1s - loss: 7385.9989 - val_loss: 6936.7388
+Epoch 32/100
+ - 1s - loss: 6876.5494 - val_loss: 7648.3244
+Epoch 33/100
+ - 1s - loss: 6857.0070 - val_loss: 7122.5966
+Epoch 34/100
+ - 1s - loss: 6920.6831 - val_loss: 6912.8430
+Epoch 35/100
+ - 1s - loss: 6804.4660 - val_loss: 6914.0469
+Epoch 36/100
+ - 1s - loss: 6593.6732 - val_loss: 7241.2553
+Epoch 37/100
+ - 1s - loss: 6592.2342 - val_loss: 6797.8017
+Epoch 38/100
+ - 1s - loss: 6585.6942 - val_loss: 7851.0376
+Epoch 39/100
+ - 1s - loss: 6542.1230 - val_loss: 8595.2926
+Epoch 40/100
+ - 1s - loss: 6638.9787 - val_loss: 9387.8183
+Epoch 41/100
+ - 1s - loss: 6351.6351 - val_loss: 6858.3525
+Epoch 42/100
+ - 1s - loss: 6509.7053 - val_loss: 7601.5125
+Epoch 43/100
+ - 1s - loss: 6285.7409 - val_loss: 6962.5496
+Epoch 44/100
+ - 1s - loss: 6255.2036 - val_loss: 9210.2542
+Epoch 45/100
+ - 1s - loss: 6399.6744 - val_loss: 6814.4798
+Epoch 46/100
+ - 1s - loss: 6476.2046 - val_loss: 6790.0284
+Epoch 47/100
+ - 1s - loss: 6100.1381 - val_loss: 6811.5835
+Epoch 48/100
+ - 1s - loss: 5955.7639 - val_loss: 6992.1576
+Epoch 49/100
+ - 1s - loss: 5988.9649 - val_loss: 6579.8917
+Epoch 50/100
+ - 1s - loss: 5983.7137 - val_loss: 6610.9975
+Epoch 51/100
+ - 1s - loss: 6243.6131 - val_loss: 6399.2264
+Epoch 52/100
+ - 1s - loss: 5986.2351 - val_loss: 7196.6525
+Epoch 53/100
+ - 1s - loss: 6348.6502 - val_loss: 6373.0809
+Epoch 54/100
+ - 1s - loss: 6182.8160 - val_loss: 7016.5829
+Epoch 55/100
+ - 1s - loss: 5963.1853 - val_loss: 7874.5681
+Epoch 56/100
+ - 1s - loss: 5857.4204 - val_loss: 8174.8231
+Epoch 57/100
+ - 1s - loss: 5807.5498 - val_loss: 6661.9800
+Epoch 58/100
+ - 1s - loss: 5720.5616 - val_loss: 7304.8510
+Epoch 59/100
+ - 1s - loss: 5569.5817 - val_loss: 7547.9997
+Epoch 60/100
+ - 1s - loss: 5551.5497 - val_loss: 7008.6161
+Epoch 61/100
+ - 1s - loss: 5482.9164 - val_loss: 6896.2317
+Epoch 62/100
+ - 1s - loss: 5656.6262 - val_loss: 6665.7314
+Epoch 63/100
+ - 1s - loss: 5053.3178 - val_loss: 6279.2242
+Epoch 64/100
+ - 1s - loss: 5306.7175 - val_loss: 6620.2475
+Epoch 65/100
+ - 1s - loss: 4894.9295 - val_loss: 6162.4138
+Epoch 66/100
+ - 1s - loss: 5077.7302 - val_loss: 8284.2457
+Epoch 67/100
+ - 1s - loss: 5176.5331 - val_loss: 7467.5760
+Epoch 68/100
+ - 1s - loss: 4782.0345 - val_loss: 6082.3879
+Epoch 69/100
+ - 1s - loss: 4662.9755 - val_loss: 8049.0852
+Epoch 70/100
+ - 1s - loss: 4595.0722 - val_loss: 6126.9813
+Epoch 71/100
+ - 1s - loss: 4712.7214 - val_loss: 6101.1249
+Epoch 72/100
+ - 1s - loss: 4241.9664 - val_loss: 5974.4138
+Epoch 73/100
+ - 1s - loss: 4377.5809 - val_loss: 7960.9237
+Epoch 74/100
+ - 1s - loss: 4571.9141 - val_loss: 6006.7733
+Epoch 75/100
+ - 1s - loss: 4099.1731 - val_loss: 7689.2517
+Epoch 76/100
+ - 1s - loss: 4320.4716 - val_loss: 7905.4800
+Epoch 77/100
+ - 1s - loss: 4031.8877 - val_loss: 6511.6973
+Epoch 78/100
+ - 1s - loss: 3984.2897 - val_loss: 7403.9927
+Epoch 79/100
+ - 1s - loss: 3678.7339 - val_loss: 6125.1428
+Epoch 80/100
+ - 1s - loss: 3515.9697 - val_loss: 6439.4456
+Epoch 81/100
+ - 1s - loss: 3844.3807 - val_loss: 6762.6935
+Epoch 82/100
+ - 1s - loss: 3311.2187 - val_loss: 6154.5306
+Epoch 83/100
+ - 1s - loss: 3200.6992 - val_loss: 6344.3876
+Epoch 84/100
+ - 1s - loss: 3074.7645 - val_loss: 6184.9766
+Epoch 85/100
+ - 1s - loss: 3243.5605 - val_loss: 6726.7247
+Epoch 86/100
+ - 1s - loss: 3002.9107 - val_loss: 6529.4407
+Epoch 87/100
+ - 1s - loss: 3000.6373 - val_loss: 6471.9504
+Epoch 88/100
+ - 1s - loss: 2861.7135 - val_loss: 7138.4999
+Epoch 89/100
+ - 1s - loss: 2529.3797 - val_loss: 6466.8538
+Epoch 90/100
+ - 1s - loss: 2745.4143 - val_loss: 6593.8133
+Epoch 91/100
+ - 1s - loss: 2484.5921 - val_loss: 6742.0250
+Epoch 92/100
+ - 1s - loss: 2323.9637 - val_loss: 7707.8546
+Epoch 93/100
+ - 1s - loss: 2247.7076 - val_loss: 7380.2918
+Epoch 94/100
+ - 1s - loss: 2123.9508 - val_loss: 6984.1771
+Epoch 95/100
+ - 1s - loss: 2120.9221 - val_loss: 8075.5440
+Epoch 96/100
+ - 1s - loss: 1802.5482 - val_loss: 8646.4597
+Epoch 97/100
+ - 1s - loss: 1937.7496 - val_loss: 10465.3286
+Epoch 98/100
+ - 1s - loss: 1787.8300 - val_loss: 7144.9911
+Epoch 99/100
+ - 1s - loss: 1515.2526 - val_loss: 7875.7278
+Epoch 100/100
+ - 1s - loss: 1477.6122 - val_loss: 7319.7148
+R2 score  : 0.43566472402902967
