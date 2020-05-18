@@ -7,3 +7,5 @@ code/master/src/__pycache__/getdata.cpython-36.pyc
 *.pyc
 *.h5
 *.pyc
+*.gdoc
+*.pyc
